@@ -1,0 +1,30 @@
+<div class="quiz-container">
+    <div class="start-slide">
+        <div class="button-container">
+            <button id="startQuiz">Start quiz</button>
+        </div>
+    </div>
+
+    <div id="carousel-example-generic" class="carousel slide">
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+            <div class="item" ng-repeat="item in questions">
+                <h2>{{item.title}}</h2>
+                <ul>
+                  <li>{{item.question}}</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+    </div>
+
+
+</div>
