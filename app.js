@@ -83,10 +83,6 @@ app.directive('quizSlider', [function(){
                 var endPoints = $scope.feedbackArray;
                 $scope.total = 0;
 
-                //$.each(endPoints, function(){
-                //    $scope.total += this;
-                //});
-
                 for ( var i = 0; i < endPoints.length; i++ ) {
                     $scope.total += endPoints[i];
                 }
@@ -101,7 +97,6 @@ app.directive('quizSlider', [function(){
             };
             $scope.restartQuiz = function() {
                 $('#carousel-example-generic'+ $scope.uniqueId +'').carousel(0);
-                console.log($('.carousel-example-generic'+ $scope.uniqueId +''));
                 $('#carousel-example-generic'+ $scope.uniqueId +'').on('slid.bs.carousel', function(){
                     $scope.feedback = null;
                 });
@@ -109,7 +104,6 @@ app.directive('quizSlider', [function(){
                 $scope.total = 0;
                 $scope.feedbackArray.length = 0;
             }
-
         }
     }
 }]);
