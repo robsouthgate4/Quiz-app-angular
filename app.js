@@ -49,13 +49,13 @@ app.directive('quizSlider', [function(){
             factoryInstance.getQuestions()
                 .success(function(data){
                     $scope.questions = data.questionset;
+                    $('#carousel-example-generic'+ $scope.uniqueId +'').carousel({
+                        interval: false
+                    });
                 }).error(function(){
                     alert("Error getting data");
-                });
+                });           
             
-            $('.carousel').carousel({
-                interval: false
-            });
 
             $scope.startQuiz = function(){
                 $scope.start = true;
@@ -100,8 +100,9 @@ app.directive('quizSlider', [function(){
                 }
             };
             $scope.restartQuiz = function() {
-                $('.carousel').carousel(0);
-                $('.carousel').on('slid.bs.carousel', function(){
+                $('#carousel-example-generic'+ $scope.uniqueId +'').carousel(0);
+                console.log($('.carousel-example-generic'+ $scope.uniqueId +''));
+                $('#carousel-example-generic'+ $scope.uniqueId +'').on('slid.bs.carousel', function(){
                     $scope.feedback = null;
                 });
                 $scope.count = 0;
