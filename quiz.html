@@ -1,29 +1,61 @@
 <div class="quiz-container">
-    <div class="start-slide">
+
+    <div class="start-slide animate-hide" ng-hide="start">
         <div class="button-container">
-            <button id="startQuiz">Start quiz</button>
+            <button id="startQuiz" ng-click="startQuiz()">Start quiz</button>
         </div>
     </div>
 
-    <div id="carousel-example-generic" class="carousel slide">
-
-        <!-- Wrapper for slides -->
+    <div id="carousel-example-generic{{::uniqueId}}" class="carousel slide">
         <div class="carousel-inner" role="listbox">
 
-            <div class="item" ng-repeat="item in questions">
+            <div class="item"
+                 ng-repeat="item in questions"
+                 ng-class= "{ active: $first }">
                 <h2>{{item.title}}</h2>
+                <p>{{item.question}}</p>
                 <ul>
-                  <li>{{item.question}}</li>
+                    <li class="list-item"
+                        ng-click="itemClicked($index);"
+                        ng-repeat="option in item.options"
+                        ng-class="{selected: $index == selectedIndex}">
+                        {{option.label}}
+                    </li>
                 </ul>
             </div>
 
+            <div class="item" ng-switch on="feedback">
+                <div ng-switch-when="first">
+                    <h2>This is the feedback for result one</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+                <div ng-switch-when="second">
+                    <h2>This is the feedback for result two</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+                <div ng-switch-when="third">
+                    <h2>This is the feedback for result three</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+                <button ng-click="restartQuiz()" class="restart">Restart quiz</button>
+            </div>
+
+            <a class="right carousel-control animate-hide"
+               href="#carousel-example-generic{{::uniqueId}}"
+               role="button"
+               data-slide="next"
+               ng-hide="nextHidden"
+               ng-click="nextHidden = true; buildFeedback()"
+                    >
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+            <ol class="carousel-indicators">
+                <li ng-repeat="item in questions" ng-class="{active: $index == 0}" data-target="#carousel-example-generic{{::uniqueId}}"></li><li></li>
+            </ol>
+
         </div>
-
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-
     </div>
 
 

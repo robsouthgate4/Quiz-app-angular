@@ -48,81 +48,17 @@
     <![endif]-->
 
 </head>
-      <body ng-app="quizApp">
+    <body ng-app="quizApp">
         <div class="container" ng-controller="MainCtrl as mainCtrl">
             <div class="row">
-                <div class="col-md-12">                    
-                    <div class="quiz-container" ng-controller="QuizCtrl as ctrl">
-                        
-                        <div class="start-slide animate-hide" ng-hide="ctrl.start">
-                            <div class="button-container">
-                                <button id="startQuiz" ng-click="ctrl.startQuiz()">Start quiz</button>
-                            </div>
-                        </div>
+                <div class="col-md-12">
 
-                        <div id="carousel-example-generic" class="carousel slide">
-                            <div class="carousel-inner" role="listbox">
+                    <quiz-slider></quiz-slider>
 
-                                <div class="item" 
-                                     ng-repeat="item in ctrl.questions" 
-                                     ng-class= "{ active: $index == 0 }">
-                                    <h2>{{item.title}}</h2>
-                                    <p>{{item.question}}</p>
-                                    <ul>
-                                      <li class="list-item" 
-                                          ng-click="ctrl.itemClicked($index);" 
-                                          ng-repeat="option in item.options" 
-                                          ng-class="{selected: $index == ctrl.selectedIndex}">
-                                          {{option.label}}
-                                      </li>
-                                    </ul>
-                                </div>
+                    <quiz-slider></quiz-slider>
 
-                                <!-- Result slide -->
-                                <div class="item" ng-switch on="ctrl.feedback">                                    
-                                    <div ng-switch-when="first">
-                                        <h2>This is the feedback for result one</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                    <div ng-switch-when="second">
-                                        <h2>This is the feedback for result two</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>                                        
-                                    </div>
-                                    <div ng-switch-when="third">
-                                        <h2>This is the feedback for result three</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>                                        
-                                    </div>
-                                    <button ng-click="ctrl.restartQuiz()" class="restart">Restart quiz</button>
-                                </div>
-
-                            </div>
-
-                            <a class="right carousel-control animate-hide" 
-                                href="#carousel-example-generic" 
-                                role="button" 
-                                data-slide="next"
-                                ng-hide="ctrl.nextHidden"
-                                ng-click="ctrl.nextHidden = true; ctrl.buildFeedback()"
-                                >
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-
-                            <ol class="carousel-indicators">
-                                <li ng-repeat="item in ctrl.questions" ng-class="{active: $index == 0}" data-target="#carousel-example-generic"></li>
-                            </ol>
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-
-<script>
-    
-</script>
-</body>
+    </body>
 </html>
