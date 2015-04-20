@@ -5,7 +5,7 @@ app.controller('MainCtrl', [function(){
 	var self = this;
 }]);
 
-app.factory('quizData', ['$http', function($http){
+app.factory('quizDataOne', ['$http', function($http){
 	return {
 		getQuestions: function() {
 			data = $http.get('data.json');
@@ -14,18 +14,24 @@ app.factory('quizData', ['$http', function($http){
 	}
 }]);
 
-app.directive('quizSlider', ['quizData', function(quizData){
+app.factory('quizDataTwo', ['$http', function($http){
+    return {
+        getQuestions: function() {
+            data = $http.get('dataTwo.json');
+            return data;
+        }
+    }
+}]);
+
+app.directive('quizSlider', [function(){
     var uniqueId = 1;
     return {
         templateUrl: 'quiz.html',
-        restrict: 'AE',
+        restrict: 'AEC',
         scope: {
-
+            factoryName : '@'
         },
         link: function($scope, $element, $attrs) {
-
-            console.log($element);
-            console.log($attrs);
 
             $scope.start = false;
             $scope.selectedIndex = null;
@@ -37,15 +43,19 @@ app.directive('quizSlider', ['quizData', function(quizData){
             $scope.feedback = null;
             $scope.uniqueId = '-item' + uniqueId++;
 
-            quizData.getQuestions()
+            var factoryInstance = $element.injector().get($scope.factoryName);
+
+            // Receive data from factory that is specified with html
+            factoryInstance.getQuestions()
                 .success(function(data){
                     $scope.questions = data.questionset;
-                    $('.carousel').carousel({
-                        interval: false
-                    });
                 }).error(function(){
                     alert("Error getting data");
                 });
+            
+            $('.carousel').carousel({
+                interval: false
+            });
 
             $scope.startQuiz = function(){
                 $scope.start = true;
