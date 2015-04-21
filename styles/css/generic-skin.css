@@ -1,21 +1,27 @@
+/* line 3, ../sass/_main.scss */
 .quiz-container {
   position: relative;
   margin-top: 50px;
 }
+/* line 6, ../sass/_main.scss */
 .quiz-container .item {
   padding: 20px;
   height: 500px;
   background: #ccc;
 }
+/* line 10, ../sass/_main.scss */
 .quiz-container .item h2 {
   margin-top: 0;
 }
+/* line 14, ../sass/_main.scss */
 .quiz-container .item ul li {
   cursor: pointer;
 }
+/* line 16, ../sass/_main.scss */
 .quiz-container .item ul li.selected {
   color: #fff;
 }
+/* line 22, ../sass/_main.scss */
 .quiz-container .start-slide {
   position: absolute;
   top: 0;
@@ -25,10 +31,24 @@
   background: black;
   z-index: 100;
 }
+/* line 30, ../sass/_main.scss */
 .quiz-container .start-slide .button-container {
   position: absolute;
   left: 0;
   bottom: 20px;
   width: 100%;
   text-align: center;
+}
+
+/* line 45, ../sass/_main.scss */
+.result-form .form-group {
+  margin-bottom: 20px;
+}
+/* line 47, ../sass/_main.scss */
+.result-form .form-group input {
+  width: 50%;
+}
+/* line 49, ../sass/_main.scss */
+.result-form .form-group input:first-child {
+  margin-top: 12px;
 }
